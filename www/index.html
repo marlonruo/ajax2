@@ -38,71 +38,47 @@
 
 <script src="js/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="js/jquery.form.js"></script>
+
+	<script>
+    $(document).ready(function() {
+ 
+        $("#testLink").click(function(e) {
+            e.preventDefault();
+            // Un mensaje de estado
+            $("#resultBlock").html("Obteniendo los datos - esperando...");
+            // Hacemos un peticion web y obtenemos la data
+            $.get("http://marlonruo.com/jj/leer.php", {}, function(data) {
+                // Cargamos la data dentro de la etiqueta p
+                $("#resultBlock").html(data);
+            })
+        });
+ 
+    });
+    </script>
+
 </head>
 
 <body style="min-width:750px">
 
 <!--///////////INICIO///////////-->
 
-<div id="registro" style="position:absolute; width:400px; height:800px;">
-
-  <div style="width:100%; height:100%; position:absolute">
-    
-    <div id="mover" style="position:absolute; width:100%; height:100%;">
-
-    
-    <form name="forma_registro" id="forma_registro" method="post">
-      <div class="caja" style="top: 26%;">
-        <input id="f_nombre" name="nombre" type="text" class="caja_campo" value="First name" onFocus="fborrar1()" onBlur="fchecar1()" tabindex="1">
-      </div>
-      <div class="caja" style="top: 34.6%;">
-        <input id="f_apellido" name="apellido" type="text" class="caja_campo" value="Last name" onFocus="fborrar2()" onBlur="fchecar2()" tabindex="2">
-      </div>
-      <div class="caja" style="top: 43.4%;">
-        <input id="f_telefono" name="telefono" type="text" class="caja_campo" value="Phone number" onFocus="fborrar3()" onBlur="fchecar3()" tabindex="3">
-      </div>
-      <div class="caja" style="top: 52.4%;">
-        <input id="f_email" name="correo" type="text" class="caja_campo" value="E-mail" onFocus="fborrar4()" onBlur="fchecar4()" tabindex="4">
-      </div>
-      
-      <input type="submit" id="bt_registro" style="cursor:pointer" value="" tabindex="7">
-    </form>
+<div data-role="page" id="page">
+    <div data-role="header">
+        <h1>Demo Datos remotos</h1>
     </div>
-    <div id="bt_user"></div>
-    <a onclick="scanear();" href="#registro"><div id="bt_escan"></div></a>
-    
-    
-  </div>
-
+    <div data-role="content">
+        <!-- Haciendo clic sobre el enlace se mostrara la data en la capa de abajo -->
+        <a id="testLink" rel="external" style="cursor:pointer">data</a>
+        <div data-role="collapsible">
+            <h3>Resultado: </h3>
+            <p id="resultBlock"></p>
+        </div>
+    </div>
 </div>
 
 <!--///////////EXITO///////////-->
 
-<div id="exito" style="display:none; background-color:#000000; width:100px; height:100px; z-index:10000">
-</div>
-<script>
 
-	
-        $('#forma_registro').submit(function() {
-        $.ajax({
-            type: 'POST',
-            url: 'http://marlonruo.com/wfc2015/phps/modificar.php',
-            data: $(this).serialize(),
-            success: function(data) {
-					alert("bien")
-					$('#exito').fadeIn(400)
-					$('#registro').fadeOut(400)
-					//$('#respuesta').html(data);
-					//var id_us = document.getElementById("respuesta").innerHTML
-            }
-        })
-        return false;
-    }); 
-
-       
-		window.plugin.statusbarOverlay.hide();
-		
-</script> 
 <script type="text/javascript" src="cordova.js"></script> 
 <script type="text/javascript" src="js/app.js"></script> 
 <script type="text/javascript" src="js/index.js"></script> 
