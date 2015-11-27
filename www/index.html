@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<!--
+
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+
+<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+
+<meta name="viewport" content="user-scalable=no, target-densitydpi=device-dpi">
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<title>WFC 2015</title>
+
+<script src="js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+</head>
+
+<body style="min-width:750px">
+
+<!--///////////INICIO///////////-->
+
+<div id="registro" style="position:absolute; width:400px; height:800px;">
+
+  <div style="width:100%; height:100%; position:absolute">
+    
+    <div id="mover" style="position:absolute; width:100%; height:100%;">
+
+    
+    <form name="forma_registro" id="forma_registro" method="post">
+      <div class="caja" style="top: 26%;">
+        <input id="f_nombre" name="nombre" type="text" class="caja_campo" value="First name" onFocus="fborrar1()" onBlur="fchecar1()" tabindex="1">
+      </div>
+      <div class="caja" style="top: 34.6%;">
+        <input id="f_apellido" name="apellido" type="text" class="caja_campo" value="Last name" onFocus="fborrar2()" onBlur="fchecar2()" tabindex="2">
+      </div>
+      <div class="caja" style="top: 43.4%;">
+        <input id="f_telefono" name="telefono" type="text" class="caja_campo" value="Phone number" onFocus="fborrar3()" onBlur="fchecar3()" tabindex="3">
+      </div>
+      <div class="caja" style="top: 52.4%;">
+        <input id="f_email" name="correo" type="text" class="caja_campo" value="E-mail" onFocus="fborrar4()" onBlur="fchecar4()" tabindex="4">
+      </div>
+      
+      <input type="submit" id="bt_registro" style="cursor:pointer" value="" tabindex="7">
+    </form>
+    </div>
+    <div id="bt_user"></div>
+    <a onclick="scanear();" href="#registro"><div id="bt_escan"></div></a>
+    
+    
+  </div>
+
+</div>
+
+<!--///////////EXITO///////////-->
+
+<div id="exito" style="display:none; background-color:#000000; width:100px; height:100px; z-index:10000">
+</div>
+<script>
+
+	
+        $('#forma_registro').submit(function() {
+        $.ajax({
+            type: 'POST',
+            url: 'http://marlonruo.com/wfc2015/phps/modificar.php',
+            data: $(this).serialize(),
+            success: function(data) {
+					alert("bien")
+					$('#exito').fadeIn(400)
+					$('#registro').fadeOut(400)
+					//$('#respuesta').html(data);
+					//var id_us = document.getElementById("respuesta").innerHTML
+            }
+        })
+        return false;
+    }); 
+
+       
+		window.plugin.statusbarOverlay.hide();
+		
+</script> 
+<script type="text/javascript" src="cordova.js"></script> 
+<script type="text/javascript" src="js/app.js"></script> 
+<script type="text/javascript" src="js/index.js"></script> 
+<script type="text/javascript">
+            app.initialize();
+        </script>
+</body>
+</html>
