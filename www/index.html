@@ -47,7 +47,7 @@
             // Un mensaje de estado
             $("#resultBlock").html("Obteniendo los datos - esperando...");
             // Hacemos un peticion web y obtenemos la data
-            $.get("http://marlonruo.com/jj/leer.php", {}, function(data) {
+            $.get("http://pixelweather.com/buscarciudad.php", {}, function(data) {
                 // Cargamos la data dentro de la etiqueta p
                 $("#resultBlock").html(data);
             })
